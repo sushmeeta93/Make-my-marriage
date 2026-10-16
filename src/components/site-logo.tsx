@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
@@ -10,13 +11,17 @@ export function SiteLogo({ className }: SiteLogoProps) {
   return (
     <Link
       aria-label="Make My Marriage home"
-      className={cn(
-        "font-display text-foreground text-xl font-semibold tracking-tight",
-        className,
-      )}
+      className={cn("block shrink-0", className)}
       href="/"
     >
-      Make My Marriage
+      <Image
+        alt="Make My Marriage"
+        className="h-10 w-auto"
+        height={64}
+        priority
+        src="/make-my-marriage-logo.svg"
+        width={320}
+      />
     </Link>
   );
 }
