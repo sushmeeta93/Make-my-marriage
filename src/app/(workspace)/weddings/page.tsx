@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import {
@@ -112,6 +113,32 @@ export default function WeddingsPage() {
               <span className="text-muted-foreground text-xs">{suffix}</span>
             </p>
             <p className="text-muted-foreground mt-2 text-[11px]">{note}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="mt-6 grid gap-3 sm:grid-cols-3">
+        {[
+          ["/design/dash-arches.jpg", "Arrival", "Lake Palace arches"],
+          ["/design/dash-stationery.jpg", "Stationery", "Invitation suite"],
+          ["/design/dash-lagoon.jpg", "Lagoon", "Lake Pichola at dusk"],
+        ].map(([src, label, alt]) => (
+          <article
+            className="bg-card overflow-hidden rounded-lg border"
+            key={label}
+          >
+            <div className="relative h-40">
+              <Image
+                alt={alt}
+                className="object-cover"
+                fill
+                sizes="33vw"
+                src={src}
+              />
+            </div>
+            <p className="px-4 py-3 text-[10px] font-bold tracking-wider text-[#815123] uppercase">
+              {label}
+            </p>
           </article>
         ))}
       </section>

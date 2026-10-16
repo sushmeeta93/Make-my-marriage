@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -67,6 +68,27 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-3 px-5 pb-4 sm:grid-cols-3 sm:px-6">
+        {[
+          ["/design/couple.jpg", "Couple portrait at sunset"],
+          ["/design/welcome.jpg", "Traditional welcome"],
+          ["/design/banquet.jpg", "Royal banquet"],
+        ].map(([src, alt]) => (
+          <div
+            className="relative aspect-[4/3] overflow-hidden rounded-lg"
+            key={src}
+          >
+            <Image
+              alt={alt}
+              className="object-cover"
+              fill
+              sizes="33vw"
+              src={src}
+            />
+          </div>
+        ))}
       </section>
 
       <section className="bg-card border-y px-5 py-16 sm:px-6">

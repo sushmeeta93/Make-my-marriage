@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type ReactNode } from "react";
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -282,9 +283,18 @@ export function VendorDetailWorkspace({ weddingId }: { weddingId: string }) {
               Google Places verified
             </span>
           </div>
-          <h1 className="font-display mt-3 text-4xl sm:text-5xl">
-            The Oberoi Udaivilas
-          </h1>
+          <div className="mt-3 flex items-center gap-4">
+            <Image
+              alt="Parvati and Shivam monogram"
+              className="size-14 rounded-md border object-cover"
+              height={56}
+              src="/design/vendor-crest.jpg"
+              width={56}
+            />
+            <h1 className="font-display text-4xl sm:text-5xl">
+              The Oberoi Udaivilas
+            </h1>
+          </div>
           <p className="text-muted-foreground mt-2 flex items-center gap-2 text-sm">
             <MapPin size={14} /> Haridas Ji Ki Magri, Lake Pichola, Udaipur
           </p>

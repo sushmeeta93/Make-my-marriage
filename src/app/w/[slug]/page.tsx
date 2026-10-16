@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -77,6 +78,16 @@ export default async function PublicWeddingPage({
           </div>
 
           <article className="bg-card border-border/60 overflow-hidden rounded-xl border shadow-[0_28px_80px_-48px_rgba(27,28,25,0.4)]">
+            <div className="relative h-52">
+              <Image
+                alt="Udaipur palace"
+                className="object-cover"
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                src="/design/cover.jpg"
+              />
+            </div>
             <div className="bg-muted/70 border-b px-5 py-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-[9px] font-bold tracking-wider text-[#815123] uppercase">

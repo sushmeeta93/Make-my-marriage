@@ -71,16 +71,32 @@ const navigation = [
   {
     label: "Guests & collaboration",
     items: [
-      { href: "/weddings?view=guests", label: "Guests", icon: Users },
-      { href: "/weddings?view=people", label: "People", icon: UserRoundCog },
+      {
+        href: "/weddings/parvati-shivam/guests",
+        label: "Guests",
+        icon: Users,
+      },
+      {
+        href: "/weddings/parvati-shivam/people",
+        label: "People",
+        icon: UserRoundCog,
+      },
     ],
   },
   {
     label: "Publishing",
     items: [
-      { href: "/weddings?view=website", label: "Website", icon: Globe2 },
-      { href: "/weddings?view=live", label: "Live", icon: Radio },
-      { href: "/weddings?view=gallery", label: "Gallery", icon: ImageIcon },
+      {
+        href: "/weddings/parvati-shivam/website",
+        label: "Website",
+        icon: Globe2,
+      },
+      { href: "/weddings/parvati-shivam/live", label: "Live", icon: Radio },
+      {
+        href: "/weddings/parvati-shivam/gallery",
+        label: "Gallery",
+        icon: ImageIcon,
+      },
     ],
   },
 ] as const;
