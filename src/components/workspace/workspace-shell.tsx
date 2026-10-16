@@ -56,8 +56,16 @@ const navigation = [
   {
     label: "Partners & money",
     items: [
-      { href: "/weddings?view=vendors", label: "Vendors", icon: StoreIcon },
-      { href: "/weddings?view=budget", label: "Budget", icon: WalletCards },
+      {
+        href: "/weddings/parvati-shivam/vendors",
+        label: "Vendors",
+        icon: StoreIcon,
+      },
+      {
+        href: "/weddings/parvati-shivam/budget",
+        label: "Budget",
+        icon: WalletCards,
+      },
     ],
   },
   {
