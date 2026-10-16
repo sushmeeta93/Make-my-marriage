@@ -16,6 +16,7 @@ import {
   WalletCards,
 } from "lucide-react";
 
+import { signIn, signUp } from "@/lib/auth/actions";
 import { SiteLogo } from "@/components/site-logo";
 import { cn } from "@/lib/utils";
 
@@ -27,11 +28,19 @@ export function AuthForm({ mode }: AuthFormProps) {
   const isSignup = mode === "signup";
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSubmitting(true);
-    window.setTimeout(() => setIsSubmitting(false), 700);
+    setError("");
+    const result = await (isSignup ? signUp : signIn)(
+      new FormData(event.currentTarget),
+    );
+    if (result?.error) {
+      setError(result.error);
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -176,6 +185,12 @@ export function AuthForm({ mode }: AuthFormProps) {
                 />
                 Keep me signed in on this device
               </label>
+            )}
+
+            {error && (
+              <p className="rounded-md border border-[#8c3b34]/30 bg-[#f8ecea] px-3 py-3 text-sm text-[#8c3b34]">
+                {error}
+              </p>
             )}
 
             <button
