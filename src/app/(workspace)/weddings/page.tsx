@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import {
   ArrowRight,
   CalendarClock,
@@ -128,7 +129,7 @@ export default function WeddingsPage() {
             </div>
             <Link
               className="flex shrink-0 items-center gap-2 text-xs font-bold text-[#815123]"
-              href="/weddings?view=events"
+              href={"/weddings/parvati-shivam/events" as Route}
             >
               View events <ArrowRight aria-hidden="true" size={14} />
             </Link>

@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
+import type { Route } from "next";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Bell,
   CalendarDays,
@@ -34,9 +36,21 @@ const navigation = [
   {
     label: "Planning",
     items: [
-      { href: "/weddings", label: "Overview", icon: LayoutDashboard },
-      { href: "/weddings?view=events", label: "Events", icon: CalendarDays },
-      { href: "/weddings?view=tasks", label: "Tasks", icon: CheckSquare2 },
+      {
+        href: "/weddings/parvati-shivam",
+        label: "Overview",
+        icon: LayoutDashboard,
+      },
+      {
+        href: "/weddings/parvati-shivam/events",
+        label: "Events",
+        icon: CalendarDays,
+      },
+      {
+        href: "/weddings/parvati-shivam/tasks",
+        label: "Tasks",
+        icon: CheckSquare2,
+      },
     ],
   },
   {
@@ -85,6 +99,7 @@ const weddings = [
 ] as const;
 
 export function WorkspaceShell({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSwitcherOpen, setIsSwitcherOpen] = useState(false);
@@ -145,7 +160,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               )}
               <div className="space-y-1">
                 {group.items.map(({ href, icon: Icon, label }) => {
-                  const active = label === "Overview";
+                  const active = isNavigationActive(pathname, href, label);
                   return (
                     <Link
                       aria-current={active ? "page" : undefined}
@@ -159,7 +174,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                           ? "bg-[#f1e8df] text-[#815123]"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground",
                       )}
-                      href={href}
+                      href={href as Route}
                       key={label}
                       title={isCollapsed ? label : undefined}
                     >
@@ -218,6 +233,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       <MobileDrawer
         isOpen={isMobileOpen}
         onClose={() => setIsMobileOpen(false)}
+        pathname={pathname}
       />
 
       <div
@@ -512,9 +528,11 @@ function AccountMenu({
 function MobileDrawer({
   isOpen,
   onClose,
+  pathname,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  pathname: string;
 }) {
   if (!isOpen) return null;
 
@@ -573,9 +591,10 @@ function MobileDrawer({
                 <Link
                   className={cn(
                     "text-muted-foreground flex h-11 items-center gap-3 rounded-md px-3 text-sm font-medium",
-                    label === "Overview" && "bg-[#f1e8df] text-[#815123]",
+                    isNavigationActive(pathname, href, label) &&
+                      "bg-[#f1e8df] text-[#815123]",
                   )}
-                  href={href}
+                  href={href as Route}
                   key={label}
                   onClick={onClose}
                 >
@@ -615,4 +634,9 @@ function MobileDrawer({
       </aside>
     </div>
   );
+}
+
+function isNavigationActive(pathname: string, href: string, label: string) {
+  if (label === "Overview") return pathname === href;
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
