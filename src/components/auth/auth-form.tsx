@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type InputHTMLAttributes } from "react";
+import type { Route } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -103,7 +104,7 @@ export function AuthForm({ mode }: AuthFormProps) {
                 {!isSignup && (
                   <Link
                     className="text-xs font-semibold text-[#815123] hover:underline"
-                    href="#"
+                    href={"/forgot-password" as Route}
                   >
                     Forgot password?
                   </Link>
